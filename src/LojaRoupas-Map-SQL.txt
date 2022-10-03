@@ -1,0 +1,55 @@
+MAPEAMENTO
+==============================================
+
+Cliente = (nome)
+
+Roupa = (codigo, preco, nome_cliente)
+	nome_cliente = FK Cliente (nome)
+
+Camiseta = (codigo_roupa, cor, tamanho)
+	codigo_roupa = FK Roupa (codigo)
+
+Calça = (codigo_roupa, numero)
+	codigo_roupa = FK Roupa (codigo)
+
+Vestido = (codigo_roupa, estampa)
+	codigo_roupa = FK Roupa (codigo)
+
+==============================================
+MYSQL
+==============================================
+
+create database lojaroupa;
+use lojaroupa;
+
+create table Cliente (
+ nome varchar(40),
+ primary key (nome));
+
+create table Roupa (
+ codigo integer,
+ preco float,
+ nome_cliente varchar(40),
+ primary key (codigo),
+ foreign key (nome_cliente) references Cliente (nome));
+
+create table Camiseta (
+ codigo_roupa integer,
+ cor varchar(20),
+ tamanho char(1),
+ primary key (codigo_roupa),
+ foreign key (codigo_roupa) references Roupa (codigo));
+
+create table Calca (
+ codigo_roupa integer,
+ numero integer,
+ primary key (codigo_roupa),
+ foreign key (codigo_roupa) references Roupa (codigo));
+
+create table Vestido (
+ codigo_roupa integer,
+ estampa varchar(20),
+ primary key (codigo_roupa),
+ foreign key (codigo_roupa) references Roupa (codigo));
+
+==============================================
